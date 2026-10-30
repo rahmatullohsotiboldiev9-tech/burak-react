@@ -16,9 +16,7 @@ export default function HomeNavbar() {
 
                     <Stack className="links" direction="row">
                         <Box className="hover-line">
-                            <NavLink exact to="/" activeClassName="underline">
-                                Home
-                            </NavLink>
+                            <NavLink exact to="/" >Home</NavLink>
                         </Box>
                         <Box className="hover-line">
                             <NavLink to="/products" activeClassName="underline">
