@@ -1,81 +1,68 @@
 import { Box, Button, Container, Stack } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-
 export default function HomeNavbar() {
     const authMember = null;
-    return (<div className="home-navbar">
-        <Container sx={{ mt: "55px", height: "642px" }}>
-            <Stack
-                direction="row"
-                sx={{
-                    height: "50px",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                }}
-            >
 
-                <Box>
-                    <NavLink to="/">
-                        <img style={{ width: "125px", height: "30px" }}
-                            src="/icons/burak.svg" />
-                    </NavLink>
-                </Box>
-                <Stack
-                    direction="row"
-                    sx={{
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        minWidth: "700px",
-                    }}
-                >
-
-                    <Box className={"hover-line"}>
-                        <NavLink to="/" activeClassName={"underline"}>
-                            Home
+    return (
+        <div className="home-navbar">
+            <Container className="navbar-container">
+                <Stack className="menu" direction="row">
+                    <Box>
+                        <NavLink to="/">
+                            <img className="brand-logo" src="/icons/burak.svg" alt="Burak logo" />
                         </NavLink>
                     </Box>
-                    <Box className={"hover-line"}>
-                        <NavLink to="/products" activeClassName={"underline"}>
-                            Products
-                        </NavLink>
-                    </Box>
-                    {authMember ? (
-                        <Box className={"hover-line"}>
-                            <NavLink to="/orders" activeClassName={"underline"}>
-                                Orders
+
+                    <Stack className="links" direction="row">
+                        <Box className="hover-line">
+                            <NavLink exact to="/" activeClassName="underline">
+                                Home
                             </NavLink>
                         </Box>
-                    ) : null}
-                    {authMember ? (
-                        <Box className={"hover-line"}>
-                            <NavLink to="/member-page" activeClassName={"underline"}>
-                                My Page
+                        <Box className="hover-line">
+                            <NavLink to="/products" activeClassName="underline">
+                                Products
                             </NavLink>
                         </Box>
-                    ) : null}
-                    <Box className={"hover-line"}>
-                        <NavLink to="/help" activeClassName={"underline"}>
-                            Help
-                        </NavLink>
-                    </Box>
-                    {/* BASKET */}
-
-                    {!authMember ? (
-                        <Box>
-                            <Button
-                                variant="contained"
-                                sx={{ background: "#3776CC", color: "#f8f8ff" }}
-                            >
-                                Login</Button>
+                        {authMember ? (
+                            <Box className="hover-line">
+                                <NavLink to="/orders" activeClassName="underline">
+                                    Orders
+                                </NavLink>
+                            </Box>
+                        ) : null}
+                        {authMember ? (
+                            <Box className="hover-line">
+                                <NavLink to="/member-page" activeClassName="underline">
+                                    My Page
+                                </NavLink>
+                            </Box>
+                        ) : null}
+                        <Box className="hover-line">
+                            <NavLink to="/help" activeClassName="underline">
+                                Help
+                            </NavLink>
                         </Box>
-                    ) : (
-                        <img />
-                    )}
+                        {/* BASKET */}
+                        {!authMember ? (
+                            <Box>
+                                <Button variant="contained" className="login-button">
+                                    Login
+                                </Button>
+                            </Box>
+                        ) : (
+                            <img
+                                className="user-avatar"
+                                src="/icons/default-user.svg"
+                                alt="User avatar"
+                                aria-haspopup="true"
+                            />
+                        )}
+                    </Stack>
                 </Stack>
-            </Stack>
-            <Stack>DETAIL</Stack>
-        </Container>
-    </div>
+                <Stack>DETAIL</Stack>
+            </Container>
+        </div>
     );
 }
