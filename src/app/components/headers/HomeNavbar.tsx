@@ -42,7 +42,7 @@ export default function HomeNavbar() {
                                 Help
                             </NavLink>
                         </Box>
-                        import Basket from "./Basket";
+
 
                         ...
                         <Box className="hover-line">
