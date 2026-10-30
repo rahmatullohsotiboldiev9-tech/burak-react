@@ -44,7 +44,7 @@ export default function HomeNavbar() {
                         </Box>
 
 
-                        ...
+
                         <Box className="hover-line">
                             <NavLink to="/help" activeClassName="underline">Help</NavLink>
                         </Box>
