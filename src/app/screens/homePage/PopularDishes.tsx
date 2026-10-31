@@ -59,7 +59,7 @@ export default function PopularDishes() {
                                                     display: "flex",
                                                 }}
                                             >
-                                                20
+                                                67
                                                 <VisibilityIcon
                                                     style={{ fontSize: 25, marginLeft: 5 }}
                                                 />
@@ -81,7 +81,7 @@ export default function PopularDishes() {
                                             startDecorator={<DescriptionOutlinedIcon />}
                                             textColor="neutral.300"
                                         >
-                                            This is delicious meal
+                                            We suggest yummy dishes
                                         </Typography>
                                     </CardOverflow>
                                 </Card>

@@ -37,7 +37,7 @@ export default function Footer() {
           <Stack sx={{ ml: "288px" }} direction="row">
             <Stack>
               <Box>
-                <Box className={"foot-category-title"}>Bo'limlar</Box>
+                <Box className={"foot-category-title"}>Sections</Box>
                 <Box className={"foot-category-link"}>
                   <Link to="/">Home</Link>
                   <Link to="/products">Products</Link>
@@ -59,19 +59,19 @@ export default function Footer() {
                   }}
                 >
                   <Box className={"find-us"} sx={{ display: "flex", flexDirection: "row" }}>
-                    <span>L.</span>
+                    <span>Location :</span>
                     <div>Downtown, Dubai</div>
                   </Box>
                   <Box className={"find-us"}>
-                    <span>P.</span>
+                    <span>Phone :</span>
                     <div>+971 4 554 7777</div>
                   </Box>
                   <Box className={"find-us"}>
-                    <span>E.</span>
+                    <span>Email :</span>
                     <div>devexuz@gmail.com</div>
                   </Box>
                   <Box className={"find-us"}>
-                    <span>H.</span>
+                    <span>Workingg hours :</span>
                     <div>Visit 24 hours</div>
                   </Box>
                 </Box>
@@ -80,7 +80,7 @@ export default function Footer() {
           </Stack>
         </Stack>
         <Stack
-          style={{ border: "1px solid #C5C8C9", width: "100%", opacity: "0.2" }}
+          style={{ border: "1px solid #f7f9f9", width: "100%", opacity: "0.2" }}
           sx={{ mt: "80px" }}
         ></Stack>
         <Stack className={"copyright-txt"}>

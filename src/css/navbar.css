@@ -22,6 +22,8 @@
 .home-navbar .navbar-container .menu .brand-logo {
     width: 125px;
     height: 30px;
+
+
 }
 
 .home-navbar .navbar-container .menu .links {
@@ -148,6 +150,7 @@
     margin-top: 43px;
     width: 690px;
     height: 419px;
+
 }
 
 .home-navbar .navbar-container .logo-frame .logo-img {
@@ -157,6 +160,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     filter: invert(25%);
+
 }
 
 /*other..................................................*/
@@ -185,6 +189,7 @@
 .other-navbar .navbar-container .menu .brand-logo {
     width: 125px;
     height: 30px;
+
 }
 
 .other-navbar .navbar-container .menu .links {
@@ -299,7 +304,7 @@
     font-weight: 600;
     font-size: 15px;
     line-height: 22px;
-    color: #ae0000;
+    color: #040303;
 }
 
 .basket-info-box .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {

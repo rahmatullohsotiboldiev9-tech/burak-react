@@ -14,39 +14,33 @@ export default function OtherNavbar() {
 
                 <Stack className="links" direction="row">
                     <Box className="hover-line">
-                        <NavLink exact to="/" activeClassName="underline">
+                        <NavLink end to="/" >
                             Home
                         </NavLink>
                     </Box>
                     <Box className="hover-line">
-                        <NavLink to="/products" activeClassName="underline">
+                        <NavLink to="/products" >
                             Products
                         </NavLink>
                     </Box>
                     {authMember ? (
                         <Box className="hover-line">
-                            <NavLink to="/orders" activeClassName="underline">
+                            <NavLink to="/orders" >
                                 Orders
                             </NavLink>
                         </Box>
                     ) : null}
                     {authMember ? (
                         <Box className="hover-line">
-                            <NavLink to="/member-page" activeClassName="underline">
+                            <NavLink to="/member-page">
                                 My Page
                             </NavLink>
                         </Box>
                     ) : null}
                     <Box className="hover-line">
-                        <NavLink to="/help" activeClassName="underline">
+                        <NavLink to="/help" >
                             Help
                         </NavLink>
-                    </Box>
-                    import Basket from "./Basket";
-
-                    ...
-                    <Box className="hover-line">
-                        <NavLink to="/help" activeClassName="underline">Help</NavLink>
                     </Box>
 
                     <Basket />

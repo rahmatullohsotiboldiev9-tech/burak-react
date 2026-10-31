@@ -16,54 +16,51 @@ export default function HomeNavbar() {
 
                     <Stack className="links" direction="row">
                         <Box className="hover-line">
-                            <NavLink exact to="/" >Home</NavLink>
+                            <NavLink end to="/" >Home</NavLink>
                         </Box>
                         <Box className="hover-line">
-                            <NavLink to="/products" activeClassName="underline">
+                            <NavLink to="/products" >
                                 Products
                             </NavLink>
                         </Box>
                         {authMember ? (
                             <Box className="hover-line">
-                                <NavLink to="/orders" activeClassName="underline">
+                                <NavLink to="/orders" >
                                     Orders
                                 </NavLink>
                             </Box>
-                        ) : null}
+                        ) :
+                            null}
                         {authMember ? (
                             <Box className="hover-line">
-                                <NavLink to="/member-page" activeClassName="underline">
+                                <NavLink to="/member-page" >
                                     My Page
                                 </NavLink>
                             </Box>
-                        ) : null}
+                        ) :
+                            null}
                         <Box className="hover-line">
-                            <NavLink to="/help" activeClassName="underline">
+                            <NavLink to="/help">
                                 Help
                             </NavLink>
                         </Box>
-
-
-
-                        <Box className="hover-line">
-                            <NavLink to="/help" activeClassName="underline">Help</NavLink>
-                        </Box>
-
                         <Basket />
+
                         {!authMember ? (
                             <Box>
                                 <Button variant="contained" className="login-button">
                                     Login
                                 </Button>
                             </Box>
-                        ) : (
-                            <img
-                                className="user-avatar"
-                                src="/icons/default-user.svg"
-                                alt="User avatar"
-                                aria-haspopup="true"
-                            />
-                        )}
+                        ) :
+                            (
+                                <img
+                                    className="user-avatar"
+                                    src="/icons/default-user.svg"
+                                    alt="User avatar"
+                                    aria-haspopup="true"
+                                />
+                            )}
                     </Stack>
                 </Stack>
                 <Stack className={"header-frame"}>
@@ -78,7 +75,9 @@ export default function HomeNavbar() {
                                 <Button variant="contained" className="signup-button">
                                     SIGN UP
                                 </Button>
-                            ) : null}
+                            ) :
+
+                                null}
                         </Box>
                     </Stack>
                     <Box className="logo-frame">
@@ -87,6 +86,6 @@ export default function HomeNavbar() {
 
                 </Stack>
             </Container>
-        </div>
+        </div >
     );
 }
