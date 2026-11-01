@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react"; // @ts-ignore
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { plans } from "../../../lib/data/plans";
    import "swiper/css";
-   
+   import "swiper/css/pagination";
 
 
 

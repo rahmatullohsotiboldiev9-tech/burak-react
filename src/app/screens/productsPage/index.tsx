@@ -4,6 +4,8 @@ import { Container } from "@mui/material";
 import ChosenProduct from "./ChosenProduct";
 import Products from "./Product";
 import "../../../css/products.css";
+
+
 export default function ProductsPage() {
   return (
     <div className={"products-page"}>

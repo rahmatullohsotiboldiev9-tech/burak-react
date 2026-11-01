@@ -8,6 +8,7 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 import "../../../css/products.css";
 const products = [
   { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
@@ -21,9 +22,12 @@ const products = [
 ];
 
 export default function Products() {
+  const navigate = useNavigate();
   return (
     <div className={"products"}>
       <Container>
+
+        
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className={"avatar-big-box"}>
             <Stack className={"top-text"}>
@@ -95,42 +99,49 @@ export default function Products() {
 
             <Stack className={"product-wrapper"}>
               {products.length !== 0 ? (
-                products.map((product, index) => {
-                  return (
-                    <Stack key={index} className={"product-card"}>
-                      <Stack
-                        className={"product-img"}
-                        sx={{ backgroundImage: `url(${product.imagePath})` }}
-                      >
-                        <div className={"product-sale"}>Normal size</div>
-                        <Button className={"shop-btn"}>
-                          <img
-                            src={"/icons/shopping-cart.svg"}
-                            style={{ display: "flex" }}
-                          />
-                        </Button>
-                        <Button className={"view-btn"} sx={{ right: "36px" }}>
-                          <Badge badgeContent={20} color="secondary">
-                            <RemoveRedEyeIcon
-                              sx={{
-                                color: true ? "gray" : "white",
-                              }}
-                            />
-                          </Badge>
-                        </Button>
-                      </Stack>
-                      <Box className={"product-desc"}>
-                        <span className={"product-title"}>
-                          {product.productName}
-                        </span>
-                        <div className={"product-desc"}>
-                          <MonetizationOnIcon />
-                          {12}
-                        </div>
-                      </Box>
-                    </Stack>
-                  );
-                })
+               products.map((product, index) => {
+  return (
+    <Stack
+      key={index}
+      className={"product-card"}
+      onClick={() => navigate(`/products/${index}`)}
+      sx={{ cursor: "pointer" }}
+    >
+      <Stack
+        className={"product-img"}
+        sx={{ backgroundImage: `url(${product.imagePath})` }}
+      >
+        <div className={"product-sale"}>Normal size</div>
+        <Button
+          className={"shop-btn"}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <img
+            src={"/icons/shopping-cart.svg"}
+            alt="cart"
+            style={{ display: "flex" }}
+          />
+        </Button>
+        <Button
+          className={"view-btn"}
+          sx={{ right: "36px" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Badge badgeContent={20} color="secondary">
+            <RemoveRedEyeIcon sx={{ color: "gray" }} />
+          </Badge>
+        </Button>
+      </Stack>
+      <Box className={"product-desc"}>
+        <span className={"product-title"}>{product.productName}</span>
+        <div className={"product-desc"}>
+          <MonetizationOnIcon />
+          {12}
+        </div>
+      </Box>
+    </Stack>
+  );
+})
               ) : (
                 <Box className="no-data">Products are not available!</Box>
               )}

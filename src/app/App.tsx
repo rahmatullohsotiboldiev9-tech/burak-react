@@ -21,7 +21,7 @@ function App() {
     <>
       {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
       <Routes>
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/*" element={<ProductsPage />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/member-page" element={<UserPage />} />
         <Route path="/help" element={<HelpPage />} />
