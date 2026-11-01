@@ -1,5 +1,21 @@
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
+import ChosenProduct from "./ChosenProduct";
+import Products from "./Product";
 
 export default function ProductsPage() {
-    return <Container>ProductsPage</Container>;
+  return (
+    <div className={"products-page"}>
+      <Routes>
+        <Route path=":productId" element={<ChosenProduct />} />
+        <Route index element={<Products />} />
+      </Routes>
+    </div>
+  );
 }
+
+
+
+
+
