@@ -10,15 +10,16 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import "../../../css/products.css";
-const products = [
-  { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
-  { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-  { productName: "Kebab", imagePath: "/img/kebab.webp" },
-  { productName: "Lavash", imagePath: "/img/lavash.webp" },
-  { productName: "Lavash", imagePath: "/img/lavash.webp" },
-  { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
-  { productName: "Kebab", imagePath: "/img/kebab.webp" },
-  { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+
+export const products = [
+  { id: 1, productName: "Cutlet", imagePath: "/img/cutlet.webp", images: ["/img/cutlet.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp", images: ["/img/kebab-fresh.webp", "/img/kebab.webp"], price: 12, views: 20, desc: "Our best product" },
+  { id: 3, productName: "Kebab", imagePath: "/img/kebab.webp", images: ["/img/kebab.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
+  { id: 4, productName: "Lavash", imagePath: "/img/lavash.webp", images: ["/img/lavash.webp", "/img/doner.webp"], price: 12, views: 20, desc: "Our best product" },
+  { id: 5, productName: "Lavash", imagePath: "/img/lavash.webp", images: ["/img/lavash.webp", "/img/doner.webp"], price: 12, views: 20, desc: "Our best product" },
+  { id: 6, productName: "Cutlet", imagePath: "/img/cutlet.webp", images: ["/img/cutlet.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
+  { id: 7, productName: "Kebab", imagePath: "/img/kebab.webp", images: ["/img/kebab.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
+  { id: 8, productName: "Kebab", imagePath: "/img/kebab-fresh.webp", images: ["/img/kebab-fresh.webp", "/img/kebab.webp"], price: 12, views: 20, desc: "Our best product" },
 ];
 
 export default function Products() {

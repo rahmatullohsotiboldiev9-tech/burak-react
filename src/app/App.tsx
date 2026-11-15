@@ -12,6 +12,7 @@ import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
 import HelpPage from "./screens/helpPage";
+import Test from "./screens/test";
 
 function App() {
   const location = useLocation();
@@ -25,7 +26,7 @@ function App() {
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/member-page" element={<UserPage />} />
         <Route path="/help" element={<HelpPage />} />
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Test />} />
       </Routes>
       <Footer />
     </>
