@@ -10,12 +10,12 @@ import Typography from "@mui/joy/Typography";
 import { CssVarsProvider } from "@mui/joy/styles";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
-import { serverApi } from "../../../lib/config";
+
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrievePopularDishes } from "./selector";
 import { Product } from "../../../lib/types/product";
-
+import { serverApi } from "../../../lib/config";
 
 /** REDUX SLICE & SELECTOR */
 const popularDishesRetriever = createSelector(
@@ -27,7 +27,7 @@ const popularDishesRetriever = createSelector(
 export default function PopularDishes() {
     const { popularDishes } = useSelector(popularDishesRetriever);
 
-    console.log("popularDishes:", popularDishes);
+
 
     return (
         <div className="popular-dishes-frame">
@@ -36,13 +36,13 @@ export default function PopularDishes() {
                     <Box className="category-title">Popular Dishes</Box>
                     <Stack className="cards-frame">
                         {popularDishes.length !== 0 ? (
-                            popularDishes.map((ele: Product) => {
-                                const imagePath = `${serverApi}/${ele.productImages[0]}`;
+                            popularDishes.map((product: Product) => {
+                                const imagePath = `${serverApi}/${product.productImages[0]}`;
                                 return (
-                                    <CssVarsProvider key={ele._id}>
+                                    <CssVarsProvider key={product._id}>
                                         <Card className="card">
                                             <CardCover>
-                                                <img src={imagePath} alt={ele.productName} />
+                                                <img src={imagePath} alt={product.productName} />
                                             </CardCover>
                                             <CardCover className="card-cover" />
 
@@ -60,7 +60,7 @@ export default function PopularDishes() {
                                                         textColor="#fff"
                                                         mb={1}
                                                     >
-                                                        {ele.productName}
+                                                        {product.productName}
                                                     </Typography>
 
                                                     <Typography
@@ -71,7 +71,7 @@ export default function PopularDishes() {
                                                             display: "flex",
                                                         }}
                                                     >
-                                                        {ele.productViews}
+                                                        {product.productViews}
                                                         <VisibilityIcon
                                                             style={{ fontSize: 25, marginLeft: 5 }}
                                                         />
@@ -93,7 +93,7 @@ export default function PopularDishes() {
                                                     startDecorator={<DescriptionOutlinedIcon />}
                                                     textColor="neutral.300"
                                                 >
-                                                    {ele.productDesc}
+                                                    {product.productDesc}
                                                 </Typography>
                                             </CardOverflow>
                                         </Card>
