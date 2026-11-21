@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Container, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
@@ -8,18 +8,33 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useNavigate } from "react-router-dom";
-import "../../../css/products.css";
 
-export const products = [
-  { id: 1, productName: "Cutlet", imagePath: "/img/cutlet.webp", images: ["/img/cutlet.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
-  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp", images: ["/img/kebab-fresh.webp", "/img/kebab.webp"], price: 12, views: 20, desc: "Our best product" },
-  { id: 3, productName: "Kebab", imagePath: "/img/kebab.webp", images: ["/img/kebab.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
-  { id: 4, productName: "Lavash", imagePath: "/img/lavash.webp", images: ["/img/lavash.webp", "/img/doner.webp"], price: 12, views: 20, desc: "Our best product" },
-  { id: 5, productName: "Lavash", imagePath: "/img/lavash.webp", images: ["/img/lavash.webp", "/img/doner.webp"], price: 12, views: 20, desc: "Our best product" },
-  { id: 6, productName: "Cutlet", imagePath: "/img/cutlet.webp", images: ["/img/cutlet.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
-  { id: 7, productName: "Kebab", imagePath: "/img/kebab.webp", images: ["/img/kebab.webp", "/img/kebab-fresh.webp"], price: 12, views: 20, desc: "Our best product" },
-  { id: 8, productName: "Kebab", imagePath: "/img/kebab-fresh.webp", images: ["/img/kebab-fresh.webp", "/img/kebab.webp"], price: 12, views: 20, desc: "Our best product" },
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setProducts } from "./slice";
+import { createSelector } from "reselect";
+import { retrieveProducts } from "./selector";
+import { Product } from "../../../lib/types/product";
+import { useNavigate } from "react-router-dom";
+
+/** REDUX SLICE & SELECTOR */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setProducts: (data: Product[]) => dispatch(setProducts(data)),
+});
+const productsRetriever = createSelector(retrieveProducts, (products) => ({
+  products,
+}));
+
+
+const products = [
+
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+  { id: 2, productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
 ];
 
 export default function Products() {
@@ -28,7 +43,7 @@ export default function Products() {
     <div className={"products"}>
       <Container>
 
-        
+
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className={"avatar-big-box"}>
             <Stack className={"top-text"}>
@@ -100,49 +115,49 @@ export default function Products() {
 
             <Stack className={"product-wrapper"}>
               {products.length !== 0 ? (
-               products.map((product, index) => {
-  return (
-    <Stack
-      key={index}
-      className={"product-card"}
-      onClick={() => navigate(`/products/${index}`)}
-      sx={{ cursor: "pointer" }}
-    >
-      <Stack
-        className={"product-img"}
-        sx={{ backgroundImage: `url(${product.imagePath})` }}
-      >
-        <div className={"product-sale"}>Normal size</div>
-        <Button
-          className={"shop-btn"}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <img
-            src={"/icons/shopping-cart.svg"}
-            alt="cart"
-            style={{ display: "flex" }}
-          />
-        </Button>
-        <Button
-          className={"view-btn"}
-          sx={{ right: "36px" }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <Badge badgeContent={20} color="secondary">
-            <RemoveRedEyeIcon sx={{ color: "gray" }} />
-          </Badge>
-        </Button>
-      </Stack>
-      <Box className={"product-desc"}>
-        <span className={"product-title"}>{product.productName}</span>
-        <div className={"product-desc"}>
-          <MonetizationOnIcon />
-          {12}
-        </div>
-      </Box>
-    </Stack>
-  );
-})
+                products.map((product, index) => {
+                  return (
+                    <Stack
+                      key={index}
+                      className={"product-card"}
+                      onClick={() => navigate(`/products/${index}`)}
+                      sx={{ cursor: "pointer" }}
+                    >
+                      <Stack
+                        className={"product-img"}
+                        sx={{ backgroundImage: `url(${product.imagePath})` }}
+                      >
+                        <div className={"product-sale"}>Normal size</div>
+                        <Button
+                          className={"shop-btn"}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <img
+                            src={"/icons/shopping-cart.svg"}
+                            alt="cart"
+                            style={{ display: "flex" }}
+                          />
+                        </Button>
+                        <Button
+                          className={"view-btn"}
+                          sx={{ right: "36px" }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Badge badgeContent={20} color="secondary">
+                            <RemoveRedEyeIcon sx={{ color: "gray" }} />
+                          </Badge>
+                        </Button>
+                      </Stack>
+                      <Box className={"product-desc"}>
+                        <span className={"product-title"}>{product.productName}</span>
+                        <div className={"product-desc"}>
+                          <MonetizationOnIcon />
+                          {12}
+                        </div>
+                      </Box>
+                    </Stack>
+                  );
+                })
               ) : (
                 <Box className="no-data">Products are not available!</Box>
               )}

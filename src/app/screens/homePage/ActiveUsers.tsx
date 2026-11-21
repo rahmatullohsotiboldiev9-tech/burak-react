@@ -10,11 +10,13 @@ import { serverApi } from "../../../lib/config";
 import { Member } from "../../../lib/types/member";
 
 /** REDUX SLICE & SELECTOR */
-const topUsersRetriever = createSelector(retrieveTopUsers,
-    (topUsers) => ({ topUsers })
-);
+const topUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({
+    topUsers,
+}));
+
 export default function ActiveUsers() {
     const { topUsers } = useSelector(topUsersRetriever);
+
     return (
         <div className={"active-users-frame"}>
             <Container>
@@ -22,18 +24,16 @@ export default function ActiveUsers() {
                     <Box className={"category-title"}>Active Users</Box>
                     <Stack className={"cards-frame"}>
                         <CssVarsProvider>
-                            {topUsers.length !== 0 ?
-                                (topUsers.map((member: Member) => {
-                                    const imagePath = `${serverApi}/${member.memberImage}`;
+                            {topUsers.length !== 0 ? (
+                                topUsers.map((member: Member) => {
+                                    const imagePath = member.memberImage
+                                        ? `${serverApi}/${member.memberImage}`
+                                        : "/icons/default-user.svg";
                                     return (
-                                        <Card
-                                            key={member._id}
-                                            variant="outlined"
-                                            className={"card"}>
-
+                                        <Card key={member._id} variant="outlined" className={"card"}>
                                             <CardOverflow>
                                                 <AspectRatio ratio="1">
-                                                    <img src={imagePath} alt="" />
+                                                    <img src={imagePath} alt={member.memberNick} />
                                                 </AspectRatio>
                                             </CardOverflow>
                                             <CardOverflow>
@@ -44,9 +44,9 @@ export default function ActiveUsers() {
                                         </Card>
                                     );
                                 })
-                                ) : (
-                                    <Box className="no-data">No Active Users!</Box>
-                                )}
+                            ) : (
+                                <Box className="no-data">No Active Users!</Box>
+                            )}
                         </CssVarsProvider>
                     </Stack>
                 </Stack>
