@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
+import ClearIcon from '@mui/icons-material/Clear';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
@@ -13,12 +14,22 @@ import { serverApi } from "../../../lib/config";
 
 interface BasketProps {
   cartItems: CartItem[];
+  onAdd: (item: CartItem) => void;
+  onRemove: (item: CartItem) => void;
+  onDelete: (item: CartItem) => void;
+  onDeleteAll: () => void;
 }
 
 export default function Basket(props: BasketProps) {
-  const { cartItems } = props;
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const authMember = null;
   const history = useNavigate();
+  const itemsPrice: number = cartItems.reduce(
+    (a: number, c: CartItem) => a + c.quantity * c.price,
+    0
+  );
+  const shippingCost: number = itemsPrice < 100 ? 5 : 0;
+  const totalPrice = (itemsPrice + shippingCost).toFixed(1);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -86,8 +97,16 @@ export default function Basket(props: BasketProps) {
           <Box className={"all-check-box"}>
             {cartItems.length === 0 ? (
               <div>Cart is empty!</div>
+
             ) : (
-              <div>Cart Products:</div>
+              <Stack flexDirection={"row"}>
+                <div>Cart Products:</div>
+                <ClearIcon
+                  sx={{ ml: "5px", cursor: "pointer" }}
+                  color={"primary"}
+                  onClick={() => onDeleteAll()}
+                />
+              </Stack>
             )}
           </Box>
 
@@ -98,15 +117,15 @@ export default function Basket(props: BasketProps) {
                 return (
                   <Box className={"basket-info-box"}>
                     <div className={"cancel-btn"}>
-                      <CancelIcon color={"primary"} />
+                      <CancelIcon color={"primary"} onClick={() => onDelete(item)} />
                     </div>
                     <img src={imagePath} className={"product-img"} />
                     <span className={"product-name"}>{item.name}</span>
                     <p className={"product-price"}>${item.price} x {item.quantity}</p>
                     <Box sx={{ minWidth: 120 }}>
                       <div className={"col-2"}>
-                        <button className={"remove"}>-</button>{" "}
-                        <button className={"add"}>+</button>
+                        <button onClick={() => onRemove(item)} className={"remove"}>-</button>{" "}
+                        <button onClick={() => onAdd(item)} className={"add"}>+</button>
                       </div>
                     </Box>
                   </Box>
@@ -114,12 +133,41 @@ export default function Basket(props: BasketProps) {
               })}
             </Box>
           </Box>
-          <Box className={"basket-order"}>
-            <span className={"price"}>Total: $100 (98 +2)</span>
-            <Button startIcon={<ShoppingCartIcon />} variant={"contained"}>
-              Order
-            </Button>
-          </Box>
+          {cartItems.length !== 0 ? (
+            <Box className={"basket-summary"}>
+              <div className={"summary"}>
+                <h3 className={"summary-title"}>Summary</h3>
+                <div className={"summary-row"}></div>
+                {shippingCost > 0 && (
+                  <div className={"summary-hint"}>
+                    Add {100 - itemsPrice} $ more for free delivery
+                  </div>
+                )}
+                <div className={"summary-row"}>
+
+                  <span>Item total:</span>
+                  <span> {itemsPrice} $</span>
+                </div>
+
+                <div className={"summary-row"}>
+                  <span>Delivery:</span>
+                  <span className={shippingCost === 0 ? "free" : ""}> {shippingCost} $</span>
+                </div>
+
+                <div className={"summary-divider"} />
+                <div className={"summary-row total"}>
+                  <span>Total:</span>
+                  <span> {totalPrice} $</span>
+                </div>
+              </div>
+
+              <Button startIcon={<ShoppingCartIcon />} variant={"contained"} fullWidth>
+                Order
+              </Button>
+            </Box>
+          ) : (
+            ""
+          )}
         </Stack>
       </Menu>
     </Box>
