@@ -140,23 +140,23 @@ export default function Basket(props: BasketProps) {
                 <div className={"summary-row"}></div>
                 {shippingCost > 0 && (
                   <div className={"summary-hint"}>
-                    Add {100 - itemsPrice} $ more for free delivery
+                    add {100 - itemsPrice} $ more for free delivery
                   </div>
                 )}
                 <div className={"summary-row"}>
 
-                  <span>Item total:</span>
+                  <span>total items:</span>
                   <span> {itemsPrice} $</span>
                 </div>
 
                 <div className={"summary-row"}>
-                  <span>Delivery:</span>
+                  <span>delivery:</span>
                   <span className={shippingCost === 0 ? "free" : ""}> {shippingCost} $</span>
                 </div>
 
                 <div className={"summary-divider"} />
                 <div className={"summary-row total"}>
-                  <span>Total:</span>
+                  <span>total:</span>
                   <span> {totalPrice} $</span>
                 </div>
               </div>
