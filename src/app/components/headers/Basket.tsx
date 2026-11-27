@@ -8,7 +8,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
-import { serverApi } from "../../../lib/config";
+import { Messages, serverApi } from "../../../lib/config";
+import { useGlobals } from "../../hooks/useGlobals";
+import OrderService from "../../services/OrderService";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
 
 
 
@@ -22,8 +25,8 @@ interface BasketProps {
 
 export default function Basket(props: BasketProps) {
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const authMember = null;
-  const history = useNavigate();
+  const { authMember } = useGlobals();
+  const navigate = useNavigate();
   const itemsPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price,
     0
@@ -38,8 +41,27 @@ export default function Basket(props: BasketProps) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(e.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const procceedOrderHandler = async () => {
+    try {
+      handleClose();
+      if (!authMember) throw new Error(Messages.error2);
+
+      const order = new OrderService();
+      await order.createOrder(cartItems);
+      onDeleteAll();
+      //REFRESH VIA CONTEXT
+      navigate("/orders");
+
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+
+    }
   };
 
   return (
@@ -161,7 +183,7 @@ export default function Basket(props: BasketProps) {
                 </div>
               </div>
 
-              <Button startIcon={<ShoppingCartIcon />} variant={"contained"} fullWidth>
+              <Button onClick={procceedOrderHandler} startIcon={<ShoppingCartIcon />} variant={"contained"} fullWidth>
                 Order
               </Button>
             </Box>
