@@ -111,8 +111,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                                     onClick={handleLogoutClick}
                                 />
                             )}
-
-
                         <Menu
                             anchorEl={anchorEl}
                             id="account-menu"
@@ -155,9 +153,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                                 Logout
                             </MenuItem>
                         </Menu>
-
-
-
 
                     </Stack>
                 </Stack>

@@ -3,4 +3,5 @@ export enum OrderStatus {
     PROCESS = "PROCESS",
     FINISH = "FINISH",
     DELETE = "DELETE",
+    FINISHED = "FINISHED"
 }

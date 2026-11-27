@@ -25,7 +25,7 @@ interface BasketProps {
 
 export default function Basket(props: BasketProps) {
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const { authMember } = useGlobals();
+  const { authMember, setOrderBuilder } = useGlobals();
   const navigate = useNavigate();
   const itemsPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price,
@@ -54,9 +54,9 @@ export default function Basket(props: BasketProps) {
       const order = new OrderService();
       await order.createOrder(cartItems);
       onDeleteAll();
-      //REFRESH VIA CONTEXT
-      navigate("/orders");
 
+      setOrderBuilder(new Date());
+      navigate("/orders");
     } catch (err) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -195,3 +195,4 @@ export default function Basket(props: BasketProps) {
     </Box>
   );
 }
+
