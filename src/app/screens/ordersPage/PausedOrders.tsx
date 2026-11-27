@@ -67,7 +67,7 @@ export default function PausedOrders() {
                   <p>Product price</p>
                   <p>${order.orderTotal - order.orderDelivery}</p>
                   <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} alt="" />
-                  <p>Delivery cost</p>
+                  <p>delivery cost</p>
                   <p>${order.orderDelivery}</p>
                   <img src={"/icons/pause.svg"} style={{ marginLeft: "20px" }} alt="" />
                   <p>Total</p>
